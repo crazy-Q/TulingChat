@@ -15,9 +15,6 @@ public class MainActivity extends AppCompatActivity implements HttpCallBackListe
      * text : 西直门附近没有劳动局啊
      */
 
-    private int code;
-    private String text;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
