@@ -2,14 +2,17 @@ package com.jikexueyuan.tulingchat;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements HttpCallBackListener {
 
     private HttpUtil httpUtil;
+    private List<ListData> lists;
     /**
      * code : 100000
      * text : 西直门附近没有劳动局啊
@@ -23,6 +26,10 @@ public class MainActivity extends AppCompatActivity implements HttpCallBackListe
                 "http://www.tuling123.com/openapi/api?key=ce7277ee25d24b36a9a9011d4420c7d7&info=从西直门东直门怎么走", this)
                 .execute();
 
+    }
+
+    private void initView(){
+        lists = new ArrayList<>();
     }
 
     /**
@@ -42,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements HttpCallBackListe
     public void parseText(String string) {
         try {
             JSONObject jb = new JSONObject(string);
-            Log.d("TAG", jb.getString("code") + "");
-            Log.d("TAG", jb.getString("text") + "");
+            ListData listData = new ListData(jb.getString("text"));
+            lists.add(listData);
         } catch (JSONException e) {
             e.printStackTrace();
         }
